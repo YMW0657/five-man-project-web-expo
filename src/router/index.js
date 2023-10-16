@@ -1,0 +1,73 @@
+import { createRouter, createWebHistory } from 'vue-router'
+
+import emptyLayout from "@/layout/empty-layout.vue"
+import basicLayout from "@/layout/basic-layout.vue"
+import home from "@/views/home.vue"
+import dashboard from "@/views/dashboard.vue"
+import quiz from "@/views/quiz.vue"
+import scam from "@/views/scam.vue"
+import scan from "@/views/scan.vue"
+import scenario from "@/views/scenario.vue"
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'index',
+      redirect: '/home',
+      component: basicLayout,
+      meta: { title: '/', hidden: true },
+      children:[
+        {
+          path: '/home',
+          name: 'home',
+          component: home,
+          meta: { title: '/home', hidden: false },
+        }
+      ]
+    },
+    {
+      path: '/learning',
+      name: 'learninng',
+      component: basicLayout,
+      redirect: '/learning',
+      meta: { title: '/learning', hidden: false },
+      children:[
+        {
+          path: '/learning',
+          name: 'learning',
+          component: dashboard,
+          meta: { title: '/learning', hidden: false },
+        },
+        {
+          path: '/quiz',
+          name: 'quiz',
+          component: quiz,
+          meta: { title: '/quiz', hidden: false },
+        },
+        {
+          path: '/report',
+          name: 'report',
+          component: scam,
+          meta: { title: '/report', hidden: false },
+        },
+        {
+          path: '/scan',
+          name: 'scan',
+          component: scan,
+          meta: { title: '/scan', hidden: false },
+        },
+        {
+          path: '/scenario',
+          name: 'scenario',
+          component: scenario,
+          meta: {title: '/scenario', hidden: false},
+        }
+      ]
+    }
+   
+  ]
+})
+
+export default router
